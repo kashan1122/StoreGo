@@ -1,23 +1,34 @@
 import 'package:equatable/equatable.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 
-class ProductListState extends Equatable {
+enum Status {
+  initial,
+  loaded,
+  loading,
+  error,
+}
+
+class ProductState extends Equatable {
   final bool loading;
   final List<ProductEntity> products;
   final String? error;
+  Status status;
+  List<dynamic> items = [];
 
-  const ProductListState({
+  ProductState({
+    this.items = const [],
+    this.status = Status.initial,
     this.loading = false,
     this.products = const [],
     this.error,
   });
 
-  ProductListState copyWith({
+  ProductState copyWith({
     bool? loading,
     List<ProductEntity>? products,
     String? error,
   }) =>
-      ProductListState(
+      ProductState(
         loading: loading ?? this.loading,
         products: products ?? this.products,
         error: error,

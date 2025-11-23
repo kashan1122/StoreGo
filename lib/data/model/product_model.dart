@@ -22,4 +22,14 @@ class ProductModel extends ProductEntity {
       category: json['category'],
     );
   }
+  ProductEntity toEntity() {
+    return ProductEntity(
+      id: id,
+      title: title,
+      description: description,
+      image: image,
+      price: price,
+      category: category
+    );
+  }
 }
