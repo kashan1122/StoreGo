@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myapp/core/theme/theme_bloc/theme_bloc.dart';
+import 'package:myapp/core/theme/theme_bloc/theme_event.dart';
 import 'package:myapp/data/repositories/local/local_data_repo.dart';
 import 'package:myapp/data/repositories/remote/remote_data_repo.dart';
 import 'package:myapp/data/source/product_api.dart';
@@ -46,45 +48,58 @@ class _ProductListState extends State<ProductList> {
           title: Text(widget.title),
         ),
         body:
-        BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-          if (state.status == Status.initial) {
-            return ListView.builder(
-                itemCount: state.products.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: // Inside your ListView.builder
-                        ListTile(
-                      title: Text(state.products[index].title),
-                      subtitle: Text(state.products[index].description),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => BlocProvider(
-                              create: (context) =>
-                                  ProductBloc(ProductRepositoryImpl(
-                                    ProductRemoteDataSource(http.Client()), // ← pass your data source here
-                                  )
-                                  )
-                                    ..add(LoadProductById(
-                                         state.products[index].id)),
-                              child: ProductDetailView(
-                                  postId: state.products[index].id),
-                            ),
+        Column(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.dark_mode),
+              onPressed: () {
+                context.read<ThemeBloc>().add(ToggleTheme());
+              },
+            ),
+
+            Expanded(
+              child: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+                if (state.status == Status.initial) {
+                  return ListView.builder(
+                      itemCount: state.products.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: // Inside your ListView.builder
+                              ListTile(
+                            title: Text(state.products[index].title),
+                            subtitle: Text(state.products[index].description),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => BlocProvider(
+                                    create: (context) =>
+                                        ProductBloc(ProductRepositoryImpl(
+                                          ProductRemoteDataSource(http.Client()), // ← pass your data source here
+                                        )
+                                        )
+                                          ..add(LoadProductById(
+                                               state.products[index].id)),
+                                    child: ProductDetailView(
+                                        postId: state.products[index].id),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         );
-                      },
-                    ),
+                      });
+                } else if (state.status == Status.error) {
+                  return const Text("Failed to load");
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
-                });
-          } else if (state.status == Status.error) {
-            return const Text("Failed to load");
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        })
+                }
+              }),
+            ),
+          ],
+        )
     );
   }
 }
