@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const secondary = Color(0xFFA8715A);
-  static const primary = Color(0xFFDD8560);
+  static const primary = Color(0xFFF9F9F9); //==> Primary color changed with background
   static const lightBackground = Color(0xFFF5F5F5);
   static const darkBackground = Color(0xFF121212);
 
@@ -13,7 +13,7 @@ class AppColors {
 
 
   static const inputBackground = Color(0xFFF9F9F9);
-  static const background = Color(0xFFF8F0E7);
+  static const background = Color(0xFFDD8560);
   static const offWhite = Color(0xFFFCFCFC);
   static const linen = Color(0xFFE0CFBA);
 
