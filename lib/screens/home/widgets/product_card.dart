@@ -60,8 +60,9 @@ class ProductHorizontalCard extends StatelessWidget {
             child: CustomText(
               title,
               fontSize: 14,
+              // fontWeight: FontWeight.w600,
               fontFamily: AppFonts.montserratMedium,
-              maxLines: 1,
+              // maxLines: 1,
             ),
           ),
 

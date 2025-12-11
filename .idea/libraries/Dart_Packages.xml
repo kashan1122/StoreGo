@@ -156,6 +156,13 @@
             </list>
           </value>
         </entry>
+        <entry key="dynamic_height_grid_view">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/dynamic_height_grid_view-0.0.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="equatable">
           <value>
             <list>
@@ -212,6 +219,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_web_plugins">
+          <value>
+            <list>
+              <option value="$USER_HOME$/development/flutter/packages/flutter_web_plugins/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="frontend_server_client">
           <value>
             <list>
@@ -223,6 +237,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/glob-2.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="go_router">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/go_router-13.2.0/lib" />
             </list>
           </value>
         </entry>
@@ -622,6 +643,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dart_style-2.3.6/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dynamic_height_grid_view-0.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/equatable-2.0.7/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/ffi-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file-7.0.1/lib" />
@@ -631,6 +653,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/glob-2.1.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/go_router-13.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/graphs-2.3.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive-2.2.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib" />
@@ -685,6 +708,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.2/lib" />
       <root url="file://$USER_HOME$/development/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$USER_HOME$/development/flutter/packages/flutter/lib" />
+      <root url="file://$USER_HOME$/development/flutter/packages/flutter_web_plugins/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

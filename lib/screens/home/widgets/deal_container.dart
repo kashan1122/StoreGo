@@ -65,30 +65,33 @@ class DealContainer extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.white, width: 2),
-            ),
-            child: Row(
-              children: [
-                CustomText(
-                  AppString.viewAll,
-                  fontSize: 12,
-                  // fontWeight: FontWeight.w600,
-                  fontFamily: AppFonts.montserratSemiBold,
-                  color: Colors.white,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  width: context.wp(0.91),
-                ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                )
-              ],
+          GestureDetector(
+            onTap: onPress,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+              child: Row(
+                children: [
+                  CustomText(
+                    AppString.viewAll,
+                    fontSize: 12,
+                    // fontWeight: FontWeight.w600,
+                    fontFamily: AppFonts.montserratSemiBold,
+                    color: Colors.white,
+                    maxLines: 1,
+                  ),
+                  SizedBox(
+                    width: context.wp(0.91),
+                  ),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  )
+                ],
+              ),
             ),
           )
         ],
