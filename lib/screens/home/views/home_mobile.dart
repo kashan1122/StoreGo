@@ -221,7 +221,9 @@ class _HomeMobileState extends State<HomeMobile> {
                           discount: "10",
                           rating: 5.00,
                           reviews: 5,
-                          onTap: () {},
+                          onTap: () {
+                            context.push('/product_detail', extra: 3);
+                          },
                         );
                       },
                     ),

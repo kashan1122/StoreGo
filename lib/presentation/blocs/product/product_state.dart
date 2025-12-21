@@ -35,5 +35,5 @@ class ProductState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [loading, products, error];
+  List<Object?> get props => [loading, products, error, status, items];
 }

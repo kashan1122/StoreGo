@@ -106,22 +106,22 @@ class _HomeDesktopState extends State<HomeDesktop> {
                           description: product.description,
                           imageUrl: product.image,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) =>
-                                    BlocProvider(
-                                      create: (context) =>
-                                      ProductBloc(
-                                          ProductRepositoryImpl(
-                                              ProductRemoteDataSource(
-                                                  http.Client())))
-                                        ..add(LoadProductById(product.id)),
-                                      child: ProductDetailView(
-                                          productId: product.id),
-                                    ),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (_) =>
+                            //         BlocProvider(
+                            //           create: (context) =>
+                            //           ProductBloc(
+                            //               ProductRepositoryImpl(
+                            //                   ProductRemoteDataSource(
+                            //                       http.Client())))
+                            //             ..add(LoadProductById(product.id)),
+                            //           child: ProductDetailView(
+                            //               postId: product.id),
+                            //         ),
+                            //   ),
+                            // );
                           },
                         );
                     },

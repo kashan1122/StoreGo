@@ -113,7 +113,7 @@ class _HomeTabletState extends State<HomeTablet> {
                                                   http.Client())))
                                         ..add(LoadProductById(product.id)),
                                       child: ProductDetailView(
-                                          postId: product.id),
+                                          productId: product.id),
                                     ),
                               ),
                             );
