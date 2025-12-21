@@ -1,4 +1,3 @@
-
 import 'package:myapp/domain/repositories/product_repostory.dart';
 
 class GetProducts {

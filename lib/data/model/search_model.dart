@@ -17,14 +17,4 @@ class SearchModel extends SearchEntity {
       price: (json['price'] as num).toDouble(),
     );
   }
-
-
-  // SearchEntity toEntity() {
-  //   return SearchEntity(
-  //       id: id,
-  //       title: title,
-  //       image: image,
-  //       price: price,
-  //   );
-  // }
 }

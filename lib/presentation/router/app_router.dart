@@ -1,14 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/core/constants/app_strings.dart';
-import 'package:myapp/data/model/product_model.dart';
 import 'package:myapp/data/repositories/remote/search_repository_impl.dart';
 import 'package:myapp/data/source/search_remote_data_source.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
-import 'package:myapp/domain/entities/search_entity.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/screens/home/home_view.dart';
-import 'package:myapp/screens/product_detail/product_detail_view.dart';
 import 'package:myapp/screens/product_list/product_list_view.dart';
 import 'package:myapp/screens/search/search_view.dart';
 
@@ -25,20 +21,10 @@ final GoRouter appRouter = GoRouter(
       path: '/product_list',
       name: 'productList',
       builder: (context, state) {
-        // Extract the parameter from state.pathParameters
         final product = state.extra as List<ProductEntity>;
         return ProductListView(data: product);
       },
     ),
-    // GoRoute(
-    //   path: '/search',
-    //   name: 'search',
-    //   builder: (context, state) {
-    //     // Extract the parameter from state.pathParameters
-    //     final product = state.extra as List<ProductEntity>;
-    //     return SearchView(data: product);
-    //   },
-    // ),
     GoRoute(
       path: '/search',
       builder: (context, state) {
@@ -52,21 +38,5 @@ final GoRouter appRouter = GoRouter(
         );
       },
     ),
-
-    // GoRoute(
-    //   path: '/search',
-    //   builder: (context, state) {
-    //     // final product = state.extra as List<ProductEntity>;
-    //     return BlocProvider(
-    //       create: (_) => SearchBloc(
-    //         SearchRepositoryImpl(
-    //           SearchRemoteDataSource(),
-    //         ) as List<SearchEntity> ,
-    //       ),
-    //         child: const SearchView()
-    //     );
-    //   },
-    // ),
-
   ],
 );

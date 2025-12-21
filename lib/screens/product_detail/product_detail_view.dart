@@ -24,7 +24,6 @@ class ProductDetailView extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
-                        // fontWeight: FontWeight.w700
                       ),
                     ),
                     SizedBox(
@@ -35,7 +34,6 @@ class ProductDetailView extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
-                        // fontWeight: FontWeight.w300
                       ),
                     ),
                   ],

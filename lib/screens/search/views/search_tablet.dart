@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_event.dart';
 import 'package:myapp/presentation/blocs/search/search_state.dart';
 
 class SearchTablet extends StatefulWidget {
   const SearchTablet({super.key});
-  // final List<ProductEntity> data;
 
   @override
   State<SearchTablet> createState() => _SearchTabletState();

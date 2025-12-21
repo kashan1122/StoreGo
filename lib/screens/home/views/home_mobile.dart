@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/core/constants/app_colors.dart';
 import 'package:myapp/core/constants/app_font.dart';
 import 'package:myapp/core/constants/app_strings.dart';
-import 'package:myapp/core/custom_widgets/card.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/core/custom_widgets/textformfield.dart';
@@ -21,16 +19,6 @@ import '../widgets/product_card.dart';
 
 class HomeMobile extends StatefulWidget {
   const HomeMobile({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -39,7 +27,6 @@ class HomeMobile extends StatefulWidget {
 
 class _HomeMobileState extends State<HomeMobile> {
   TextEditingController searchCtrl = TextEditingController();
-  PageController _pageViewController = PageController();
 
   @override
   Widget build(BuildContext context) {

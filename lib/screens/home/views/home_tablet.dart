@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:myapp/core/constants/app_colors.dart';
 import 'package:myapp/core/constants/app_strings.dart';
 import 'package:myapp/core/custom_widgets/card.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
-import 'package:myapp/core/custom_widgets/image.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/core/custom_widgets/textformfield.dart';
-import 'package:myapp/core/theme/theme_bloc/theme_bloc.dart';
-import 'package:myapp/core/theme/theme_bloc/theme_event.dart';
-import 'package:myapp/data/repositories/local/local_data_repo.dart';
 import 'package:myapp/data/repositories/remote/remote_data_repo.dart';
 import 'package:myapp/data/source/product_api.dart';
-import 'package:myapp/domain/repositories/product_repostory.dart';
 import 'package:myapp/presentation/blocs/product/product_bloc.dart';
 import 'package:myapp/presentation/blocs/product/product_event.dart';
 import 'package:myapp/presentation/blocs/product/product_state.dart';
@@ -21,15 +15,6 @@ import 'package:myapp/screens/product_detail/product_detail_view.dart';
 
 class HomeTablet extends StatefulWidget {
   const HomeTablet({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -147,10 +132,6 @@ class _HomeTabletState extends State<HomeTablet> {
             );
           }
         }));
-    //   Scaffold(
-    //     backgroundColor: AppColors.primary.withOpacity(0.9),
-    //
-    //     body:
-    // );
+
   }
 }

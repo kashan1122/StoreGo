@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/data/model/product_model.dart';
-import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/screens/search/views/search_desktop.dart';
 import 'package:myapp/screens/search/views/search_mobile.dart';
 import 'package:myapp/screens/search/views/search_tablet.dart';

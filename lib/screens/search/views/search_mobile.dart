@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_event.dart';
 import 'package:myapp/presentation/blocs/search/search_state.dart';
 
 class SearchMobile extends StatefulWidget {
   const SearchMobile({super.key});
-  // final List<ProductEntity> data;
+
   @override
   State<SearchMobile> createState() => _SearchMobileState();
 }
@@ -29,9 +28,6 @@ class _SearchMobileState extends State<SearchMobile> {
               ),
               onChanged: (value) {
                 context.read<SearchBloc>().add(SearchQueryChanged(value));
-                // context
-                //     .read<SearchBloc>()
-                //     .add(SearchQueryChanged(value));
               },
             ),
           ),
