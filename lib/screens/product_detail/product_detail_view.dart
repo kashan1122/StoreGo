@@ -11,7 +11,6 @@ class ProductDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: BlocBuilder<ProductBloc, ProductState>(
-
           builder: (context, state){
             if (state.status == Status.initial) {
               return Container(

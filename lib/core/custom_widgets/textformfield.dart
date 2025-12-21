@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool isPassword;
+  final VoidCallback? onTap;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -15,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.controller,
+    this.onTap,
     this.labelText,
     this.prefixIcon,
     this.suffixIcon,
@@ -27,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
       controller: controller,
       obscureText: isPassword,
       keyboardType: keyboardType,

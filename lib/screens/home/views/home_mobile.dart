@@ -53,6 +53,9 @@ class _HomeMobileState extends State<HomeMobile> {
               child: Column(
                 children: [
                   CustomTextFormField(
+                    onTap: (){
+                      context.push("/search");
+                    },
                     prefixIcon: const Icon(Icons.search),
                     suffixIcon: const Icon(Icons.mic),
                     hintText: AppString.searchProduct,
@@ -205,7 +208,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     title: AppString.dealsOfTheDay,
                     subTitle: AppString.timeRemaining,
                     onPress: () {
-                      context.go('/product_list', extra: state.products);
+                      context.push('/product_list', extra: state.products);
                     },
                   ),
                   SizedBox(

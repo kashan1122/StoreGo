@@ -8,11 +8,15 @@ import 'package:myapp/core/theme/theme_bloc/theme_event.dart';
 import 'package:myapp/core/theme/theme_bloc/theme_state.dart';
 
 import 'package:myapp/data/repositories/remote/remote_data_repo.dart';
+import 'package:myapp/data/repositories/remote/search_repository_impl.dart';
 import 'package:myapp/data/source/product_api.dart';
+import 'package:myapp/data/source/search_remote_data_source.dart';
 import 'package:myapp/domain/repositories/product_repostory.dart';
 import 'package:myapp/presentation/blocs/product/product_bloc.dart';
 import 'package:myapp/presentation/blocs/product/product_event.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/presentation/blocs/search/search_bloc.dart';
+import 'package:myapp/presentation/blocs/search/search_event.dart';
 import 'package:myapp/presentation/router/app_router.dart';
 import 'package:myapp/screens/home/home_view.dart';
 
@@ -43,6 +47,16 @@ class MyApp extends StatelessWidget {
             DarkTheme(),
           ),
         ),
+
+
+        // BlocProvider<SearchBloc>(
+        //   create: (context) => SearchBloc(
+        //     SearchRepositoryImpl(
+        //       SearchRemoteDataSource(http.Client()),
+        //     ),
+        //   )..add(SearchQueryChanged(query)),
+        // ),
+
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {
