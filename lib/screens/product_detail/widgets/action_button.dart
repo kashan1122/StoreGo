@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/cart/cart_event.dart';
@@ -18,6 +19,8 @@ class ActionButtons extends StatelessWidget {
               backgroundColor: const Color(0xff3F92FF),
             ),
             onPressed: () {
+
+
               // context.read<CartBloc>().add(
               //     AddToCart(1, 1)
               // );
@@ -32,7 +35,9 @@ class ActionButtons extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
             ),
-            onPressed: () {},
+            onPressed: () {
+              context.push("/cart");
+            },
             child: const Text("Buy Now"),
           ),
         ),

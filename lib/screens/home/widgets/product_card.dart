@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/core/constants/app_font.dart';
 import 'package:myapp/core/custom_widgets/image.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
+import 'package:myapp/domain/entities/product_entity.dart';
+import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
+import 'package:myapp/presentation/blocs/cart/cart_event.dart';
 
 class ProductHorizontalCard extends StatelessWidget {
   final String image;
@@ -85,43 +89,79 @@ class ProductHorizontalCard extends StatelessWidget {
             SizedBox(height: context.hp(1.5)),
 
             /// PRICES ROW
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.wp(3)),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: context.wp(3)),
+                  child: Row(
                     children: [
-                      CustomText(
-                        "\$$price",
-                        fontSize: 12,
-                        fontFamily: AppFonts.montserratMedium,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                      SizedBox(width: context.wp(3)),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            "\$$oldPrice",
+                            "\$$price",
                             fontSize: 12,
-                            fontFamily: AppFonts.montserratLight,
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey,
-                            // decoration: TextDecoration.lineThrough,
+                            fontFamily: AppFonts.montserratMedium,
+                            // fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(width: context.wp(2)),
-                          CustomText(
-                            "$discount%Off",
-                            fontSize: 10,
-                            fontFamily: AppFonts.montserratRegular,
-                            color: Colors.red,
+                          SizedBox(width: context.wp(3)),
+                          Row(
+                            children: [
+                              CustomText(
+                                "\$$oldPrice",
+                                fontSize: 12,
+                                fontFamily: AppFonts.montserratLight,
+                                decoration: TextDecoration.lineThrough,
+                                color: Colors.grey,
+                                // decoration: TextDecoration.lineThrough,
+                              ),
+                              SizedBox(width: context.wp(2)),
+                              CustomText(
+                                "$discount%Off",
+                                fontSize: 10,
+                                fontFamily: AppFonts.montserratRegular,
+                                color: Colors.red,
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    print("eee");
+                    context.read<CartBloc>().add(
+                      AddToCart(
+                        userId: 1, // your user's id
+                        product: ProductEntity(
+                          id: 101,
+                          title: "Example Product",
+                          price: 19.99,
+                          description: "This is a sample product",
+                          category: "Category",
+                          image: "http://example.com/image.jpg",
+                        ),
+                        quantity: 1, // how many to add
+                      ),
+                    );
+
+                  },
+                  child: Row(
+                    children: [
+                      const CustomText("Add to Cart",
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(width: context.hp(1)),
+                    ],
+                  ),
+                ),
+
+
+              ],
             ),
 
             SizedBox(height: context.hp(1)),
