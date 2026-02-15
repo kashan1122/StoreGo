@@ -21,27 +21,30 @@ import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/domain/repositories/cart_repo.dart';
 
 class CartRepoImpl extends CartRepo {
-  final CartRemoteDataSource data;
-  CartRepoImpl(this.data);
+  final CartRemoteDataSource cartRemoteDataSource;
+  CartRepoImpl(this.cartRemoteDataSource);
 
   @override
   Future<List<CartEntity>> cartItems() {
-    return data.getCart();
+    return cartRemoteDataSource.getCart();
   }
 
   @override
-  Future<void> addToCart(int userId, ProductEntity product, int quantity) async {
+  Future<ProductEntity> addToCart(int userId, ProductEntity product, int quantity) async {
     // Call remote data source to add product
-    await data.addProductToCart(userId, product, quantity);
+    print("ADD TO CART FROM REPO IMPL");
+    var result = await cartRemoteDataSource.addProductToCart(userId, product, quantity);
+
+     return result as ProductEntity;
   }
 
   @override
   Future<void> removeFromCart(int userId, int productId) async {
-    await data.removeProductFromCart(userId, productId);
+    await cartRemoteDataSource.removeProductFromCart(userId, productId);
   }
 
   @override
   Future<void> updateQuantity(int userId, int productId, int quantity) async {
-    await data.updateProductQuantity(userId, productId, quantity);
+    await cartRemoteDataSource.updateProductQuantity(userId, productId, quantity);
   }
 }

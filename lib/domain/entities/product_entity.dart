@@ -3,7 +3,7 @@ class ProductEntity {
   final String title;
   final String description;
   final String image;
-  final double price;
+  final dynamic price;
   final String category;
   // final String quantity;
 

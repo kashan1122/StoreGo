@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
+import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/cart/cart_event.dart';
 
@@ -19,8 +20,9 @@ class ActionButtons extends StatelessWidget {
               backgroundColor: const Color(0xff3F92FF),
             ),
             onPressed: () {
+              // BlocProvider.of<CartBloc>(context).add(AddToCart(userId: 1, product: ProductEntity{
 
-
+              // }, quantity: 1));
               // context.read<CartBloc>().add(
               //     AddToCart(1, 1)
               // );

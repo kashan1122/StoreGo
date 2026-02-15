@@ -8,7 +8,7 @@ import 'package:myapp/data/source/search_remote_data_source.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
-import 'package:myapp/screens/cart/views/cart_mobile.dart';
+import 'package:myapp/screens/cart/cart_view.dart';
 import 'package:myapp/screens/home/home_view.dart';
 import 'package:myapp/screens/product_detail/product_detail_view.dart';
 import 'package:myapp/screens/product_list/product_list_view.dart';
@@ -56,7 +56,6 @@ final GoRouter appRouter = GoRouter(
         );
       },
     ),
-
     GoRoute(
       path: '/cart',
       builder: (context, state) {
@@ -66,7 +65,7 @@ final GoRouter appRouter = GoRouter(
               CartRemoteDataSource(),
             ),
           ),
-          child: const CartView(),
+          child: const CartView(title: ""),
         );
       },
     ),

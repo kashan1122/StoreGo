@@ -126,7 +126,7 @@ class ProductRemoteDataSource {
       Uri.parse("https://example.com/products/$id"),
       headers: {"Content-Type": "application/json"},
     );
-
+    print("response from product list: ${response.body}");
     if (response.statusCode == 200) {
       return ProductModel.fromJson(jsonDecode(response.body));
     } else {

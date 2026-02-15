@@ -5,13 +5,13 @@ class CartModel extends CartEntity {
   CartModel({
     required super.productId,
     required super.quantity,
-
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
+    print("object from Cart Model: $json");
     return CartModel(
-      productId: json['productId'],
-      quantity: json['quantity']
+      productId: json["productId"],
+      quantity: json["quantity"]
     );
   }
 

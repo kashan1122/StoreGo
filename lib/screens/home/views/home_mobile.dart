@@ -213,10 +213,7 @@ class _HomeMobileState extends State<HomeMobile> {
                         final product = state.products[index];
                         final p = product;
                         return ProductHorizontalCard(
-                          image: p.image,
-                          title: p.title,
-                          description: p.description,
-                          price: "20",
+                          productEntity: p,
                           oldPrice: "30",
                           discount: "10",
                           rating: 5.00,
@@ -274,11 +271,8 @@ class _HomeMobileState extends State<HomeMobile> {
                         final product = state.products[index];
                         final p = product;
                         return ProductHorizontalCard(
+                          productEntity: p,
                           isShowRating: false,
-                          image: p.image,
-                          title: p.title,
-                          description: p.description,
-                          price: "20",
                           oldPrice: "30",
                           discount: "10",
                           rating: 5.00,

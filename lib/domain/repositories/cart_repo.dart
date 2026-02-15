@@ -11,12 +11,13 @@ abstract class CartRepo {
   Future<List<CartEntity>> cartItems();
 
   /// Add a product to the cart
-  Future<void> addToCart(int userId, ProductEntity product, int quantity);
+  Future<ProductEntity> addToCart(int userId, ProductEntity product, int quantity);
 
   /// Remove a product from the cart
   Future<void> removeFromCart(int userId, int productId);
 
   /// Update quantity of a product in the cart
   Future<void> updateQuantity(int userId, int productId, int quantity);
+
 }
 

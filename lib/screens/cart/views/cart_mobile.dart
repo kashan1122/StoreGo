@@ -9,14 +9,14 @@ import 'package:myapp/screens/cart/widgets/delivery_address.dart';
 import 'package:myapp/screens/cart/widgets/shopping_list.dart';
 
 
-class CartView extends StatefulWidget {
-  const CartView({super.key});
+class CartMobile extends StatefulWidget {
+  const CartMobile({super.key});
 
   @override
-  State<CartView> createState() => _CartViewState();
+  State<CartMobile> createState() => _CartMobileState();
 }
 
-class _CartViewState extends State<CartView> {
+class _CartMobileState extends State<CartMobile> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -39,6 +39,7 @@ class _CartViewState extends State<CartView> {
                   children: [
                     BlocBuilder<CartBloc, CartState>(
                         builder: (context, state) {
+                          print("cart item: ${state.products}");
                           return  const ShoppingListSection();
                         }
                     ),
