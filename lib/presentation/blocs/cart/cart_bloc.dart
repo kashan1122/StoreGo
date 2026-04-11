@@ -12,6 +12,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<InitEvent>((event, emit) async {});
     on<AddToCart>((event, emit) async {
       ProductEntity copyEvent = event.product;
+      int copyEventQuan = event.quantity;
 
       // Map<String, dynamic> addToCartProduct =
       // {
@@ -30,9 +31,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         category: copyEvent.category,
         image: copyEvent.image,
       );
-
       try {
-        final items = await repository.addToCart(1, addToCartProduct, 1);
+        final items = await repository.addToCart(1, addToCartProduct, copyEventQuan);
+        print("ITEMS: $items");
         emit(state.copyWith(
           // status: items.toString().isNull ? CartStatus.empty : CartStatus.success,
           status: CartStatus.success,

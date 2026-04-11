@@ -32,7 +32,7 @@ class CartRepoImpl extends CartRepo {
   @override
   Future<ProductEntity> addToCart(int userId, ProductEntity product, int quantity) async {
     // Call remote data source to add product
-    print("ADD TO CART FROM REPO IMPL");
+    print("ADD TO CART FROM REPO IMPL: $quantity");
     var result = await cartRemoteDataSource.addProductToCart(userId, product, quantity);
 
      return result as ProductEntity;

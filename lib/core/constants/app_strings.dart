@@ -23,6 +23,7 @@ class AppString{
 
 
   static String off = "OFF";
+  static String quantity = "Quantity";
 //   static String lastDate = "Last Date";
 //   static String sponsored = "Sponsored";
 //   static String standAChance = "Stand a chance";

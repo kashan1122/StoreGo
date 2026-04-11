@@ -33,6 +33,7 @@ class CartRemoteDataSource {
       int userId, ProductEntity product, int quantity) async {
     try{
       print("object: $product");
+      print("DATA source quantity: $quantity");
       var request = {
         "userId": userId,
         "date": DateTime.now().toString(),
