@@ -68,17 +68,17 @@ import 'package:myapp/screens/product_detail/views/product_detail_tablet.dart';
 import '../../core/responsive/responsive_layout.dart';
 
 class ProductDetailView extends StatelessWidget {
-  const ProductDetailView({super.key, required this.productId});
-  final int productId;
+  const ProductDetailView({super.key, required this.productEntity});
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
     print("PIXELS: ${MediaQuery.sizeOf(context).height}");
 
     return ResponsiveLayout(
-      mobile: ProductDetailMobile(data: productId),
-      tablet: ProductDetailTablet(data: productId),
-      desktop: ProductDetailDesktop(data: productId),
+      mobile: ProductDetailMobile(data: productEntity),
+      tablet: ProductDetailTablet(data: productEntity),
+      desktop: ProductDetailDesktop(data: productEntity),
     );
   }
 }

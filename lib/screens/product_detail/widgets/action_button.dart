@@ -8,7 +8,8 @@ import 'package:myapp/presentation/blocs/cart/cart_event.dart';
 
 class ActionButtons extends StatelessWidget {
   final BuildContext context;
-  const ActionButtons(this.context, {super.key});
+  final ProductEntity data;
+  const ActionButtons(this.context, this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,24 @@ class ActionButtons extends StatelessWidget {
               backgroundColor: const Color(0xff3F92FF),
             ),
             onPressed: () {
+              print("eee");
+              context.read<CartBloc>().add(
+                AddToCart(
+                  userId: 1, // your user's id
+                  product: ProductEntity(
+                    id: data.id,
+                    title: data.title,
+                    price: data.price,
+                    description: data.description,
+                    category: data.category,
+                    image: data.image,
+                  ),
+                  quantity: 1, // how many to add
+                ),
+              );
+
+
+
               // BlocProvider.of<CartBloc>(context).add(AddToCart(userId: 1, product: ProductEntity{
 
               // }, quantity: 1));

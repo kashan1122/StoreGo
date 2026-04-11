@@ -5,14 +5,15 @@ import 'package:myapp/core/responsive/size_extention.dart';
 
 class PriceSection extends StatelessWidget {
   final BuildContext context;
-  const PriceSection(this.context, {super.key});
+  final dynamic price;
+  const PriceSection(this.context, this.price, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CustomText(
-          "₹1,500",
+        CustomText(
+          "₹ $price",
           fontSize: 20,
           fontFamily: AppFonts.montserratSemiBold,
         ),

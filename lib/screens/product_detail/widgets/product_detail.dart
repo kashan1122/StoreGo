@@ -5,8 +5,8 @@ import 'package:myapp/core/responsive/size_extention.dart';
 
 class ProductDetails extends StatelessWidget {
   final BuildContext context;
-  const ProductDetails(this.context, {super.key});
-
+  final String description;
+  const ProductDetails(this.context, this.description, {super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,8 +18,8 @@ class ProductDetails extends StatelessWidget {
           fontFamily: AppFonts.montserratSemiBold,
         ),
         SizedBox(height: context.hp(1)),
-        const CustomText(
-          "Perhaps the most iconic sneaker of all-time, this original Chicago colorway is the cornerstone to any sneaker collection...",
+        CustomText(
+          description,
           maxLines: 3,
           color: Colors.grey,
         ),

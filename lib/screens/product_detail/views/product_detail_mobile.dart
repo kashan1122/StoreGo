@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
+import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/screens/product_detail/widgets/action_button.dart';
 import 'package:myapp/screens/product_detail/widgets/delivery_info.dart';
 import 'package:myapp/screens/product_detail/widgets/image_sllider.dart';
@@ -11,7 +12,7 @@ import 'package:myapp/screens/product_detail/widgets/size_selector.dart';
 
 class ProductDetailMobile extends StatelessWidget {
   const ProductDetailMobile({super.key, required this.data});
-  final int data;
+  final ProductEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +31,26 @@ class ProductDetailMobile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProductImageSlider(context),
+            ProductImageSlider(context, data.image),
             SizedBox(height: context.hp(2)),
 
             SizeSelector(context),
             SizedBox(height: context.hp(2)),
 
-            ProductInfo(context),
+            ProductInfo(context, data.title),
             SizedBox(height: context.hp(2)),
 
-            PriceSection(context),
+            PriceSection(context, data.price),
             SizedBox(height: context.hp(2)),
 
-            ProductDetails(context),
+            ProductDetails(context, data.description),
             SizedBox(height: context.hp(2)),
 
-            ActionButtons(context),
+            ActionButtons(context, data),
             SizedBox(height: context.hp(2)),
 
             DeliveryInfo(context),
             SizedBox(height: context.hp(2)),
-
-            // BottomActions(context),
           ],
         ),
       ),

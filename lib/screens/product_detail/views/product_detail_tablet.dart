@@ -8,7 +8,7 @@ import 'package:myapp/presentation/blocs/search/search_state.dart';
 class ProductDetailTablet extends StatefulWidget {
   const ProductDetailTablet({super.key, required this.data});
 
-  final int data;
+  final ProductEntity data;
 
   @override
   State<ProductDetailTablet> createState() => _ProductDetailTabletState();

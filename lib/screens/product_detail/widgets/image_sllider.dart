@@ -4,7 +4,8 @@ import 'package:myapp/core/responsive/size_extention.dart';
 
 class ProductImageSlider extends StatelessWidget {
   final BuildContext context;
-  const ProductImageSlider(this.context, {super.key});
+  final String imageURL;
+  const ProductImageSlider(this.context, this.imageURL, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class ProductImageSlider extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: CustomImage(
-            "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+            imageURL,
             height: context.hp(35),
             width: double.infinity,
             fit: BoxFit.cover,

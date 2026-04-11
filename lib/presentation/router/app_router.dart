@@ -22,25 +22,25 @@ final GoRouter appRouter = GoRouter(
       name: 'home',
       builder: (context, state) => const HomeView(title: "Product Listing"),
     ),
-    GoRoute(
-      path: '/product_list',
-      name: 'productList',
-      builder: (context, state) {
-        final product = state.extra as List<ProductEntity>;
-        return ProductListView(data: product);
-      },
-    ),
+    // GoRoute(
+    //   path: '/product_list',
+    //   name: 'productList',
+    //   builder: (context, state) {
+    //     final product = state.extra as List<ProductEntity>;
+    //     return ProductListView(data: product);
+    //   },
+    // ),
     GoRoute(
       path: '/product_detail',
       name: 'productDetail',
       builder: (context, state) {
-        final extra = state.extra as int;
-        if (extra is! int) {
+        final extra = state.extra as ProductEntity;
+        if (extra is! ProductEntity) {
           return const Scaffold(
             body: Center(child: Text('Invalid product id')),
           );
         }
-        return ProductDetailView(productId: extra);
+        return ProductDetailView(productEntity: extra);
       },
     ),
     GoRoute(

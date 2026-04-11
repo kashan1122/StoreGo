@@ -124,35 +124,35 @@ class ProductHorizontalCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: (){
-                    print("eee");
-                    context.read<CartBloc>().add(
-                      AddToCart(
-                        userId: 1, // your user's id
-                        product: ProductEntity(
-                          id: productEntity.id,
-                          title: productEntity.title,
-                          price: productEntity.price,
-                          description: productEntity.description,
-                          category: productEntity.category,
-                          image: productEntity.image,
-                        ),
-                        quantity: 1, // how many to add
-                      ),
-                    );
-
-                  },
-                  child: Row(
-                    children: [
-                      const CustomText("Add to Cart",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      SizedBox(width: context.hp(1)),
-                    ],
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: (){
+                //     print("eee");
+                //     context.read<CartBloc>().add(
+                //       AddToCart(
+                //         userId: 1, // your user's id
+                //         product: ProductEntity(
+                //           id: productEntity.id,
+                //           title: productEntity.title,
+                //           price: productEntity.price,
+                //           description: productEntity.description,
+                //           category: productEntity.category,
+                //           image: productEntity.image,
+                //         ),
+                //         quantity: 1, // how many to add
+                //       ),
+                //     );
+                //
+                //   },
+                //   child: Row(
+                //     children: [
+                //       const CustomText("Add to Cart",
+                //         fontSize: 12,
+                //         fontWeight: FontWeight.w600,
+                //       ),
+                //       SizedBox(width: context.hp(1)),
+                //     ],
+                //   ),
+                // ),
 
 
               ],

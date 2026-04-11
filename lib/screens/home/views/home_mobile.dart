@@ -32,7 +32,7 @@ class _HomeMobileState extends State<HomeMobile> {
   Widget build(BuildContext context) {
     return CustomScaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(widget.title, style: TextStyle(color: Colors.black),),
         ),
         body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
           if (state.status == Status.initial) {
@@ -219,7 +219,7 @@ class _HomeMobileState extends State<HomeMobile> {
                           rating: 5.00,
                           reviews: 5,
                           onTap: () {
-                            context.push('/product_detail', extra: 3);
+                            context.push('/product_detail', extra: p);
                           },
                         );
                       },
