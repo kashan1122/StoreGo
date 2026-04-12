@@ -23,21 +23,21 @@ class _BannerCarouselState extends State<BannerCarousel> {
       "endColor": Color(0xFFFF9EB8),
       "title": "50-40% OFF",
       "subtitle": "Now in (product)\nAll colours",
-      "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png"
+      "image": "https://dummyjson.com/img/61IBBVJvSDL._AC_SY879_t.png"
     },
     {
       "startColor": Color(0xFFD1C4E9),
       "endColor": Color(0xFF9575CD),
       "title": "New Arrivals",
       "subtitle": "Trending Styles",
-      "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png"
+      "image": "https://dummyjson.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png"
     },
     {
       "startColor": Color(0xFFB3E5FC),
       "endColor": Color(0xFF4FC3F7),
       "title": "Flash Sale",
       "subtitle": "Hurry up!",
-      "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png"
+      "image": "https://dummyjson.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png"
     },
   ];
 

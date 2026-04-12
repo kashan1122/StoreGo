@@ -21,25 +21,6 @@ class LandingMobile extends StatefulWidget {
 
 class _LandingMobileState extends State<LandingMobile> {
 
-
-
-  // List<String> bodyTitles = [
-  //   "Product List",
-  //   "Cart List",
-  //   "Profile",
-  //   "Menu"
-  // ];
-  //
-  // List<Widget> bodyPages = [
-  //   const HomeView(title: "Product List"),
-  //   const CartView(title: "Cart List"),
-  //   const Center(
-  //     child: Text("PROFILE"),
-  //   ),
-  //   const Center(
-  //     child: Text("MENU"),
-  //   ),
-  // ];
   final List<NavItem> navItems = [
     NavItem(
       title: "Product List",

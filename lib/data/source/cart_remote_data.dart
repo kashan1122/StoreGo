@@ -23,12 +23,13 @@ class CartRemoteDataSource {
   final Map<int, List<CartEntity>> _carts = {}; // key = userId
 
   /// Fetch all items in the user's cart
-  Future<List<ProductEntity>> getCart({int userId = 1}) async {
+  // Future<List<ProductEntity>>
+  getCart(int userId) async {
     // await Future.delayed(const Duration(milliseconds: 500));
     // try{
       List<ProductEntity> returnNullObj = [];
       final response = await http.get(
-        Uri.parse("$baseUrl/carts/user/1"),
+        Uri.parse("$baseUrl/carts/user/$userId"),
         headers: {"Content-Type": "application/json"},
       );
       // await Future.delayed(const Duration(milliseconds: 300));
@@ -56,7 +57,7 @@ class CartRemoteDataSource {
       print("object: $product");
       print("DATA source quantity: $quantity, $userId");
       var request = {
-        "userId": 1,
+        "userId": userId,
         "products": [
           { "id": product.id, "quantity": quantity},
         ]

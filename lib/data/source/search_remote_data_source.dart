@@ -9,7 +9,7 @@ class SearchRemoteDataSource {
         "price": 109.95,
         "description": "Perfect pack for everyday use",
         "category": "men's clothing",
-        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+        "image": "https://dummyjson.com/img/81fPKd-2AYL._AC_SL1500_t.png",
         "rating": {"rate": 3.9, "count": 120}
       },
       {
@@ -18,7 +18,7 @@ class SearchRemoteDataSource {
         "price": 22.3,
         "description": "Slim fit casual wear",
         "category": "men's clothing",
-        "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+        "image": "https://dummyjson.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
         "rating": {"rate": 4.1, "count": 259}
       },
       {
@@ -27,7 +27,7 @@ class SearchRemoteDataSource {
         "price": 55.99,
         "description": "Great outerwear jacket",
         "category": "men's clothing",
-        "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
+        "image": "https://dummyjson.com/img/71li-ujtlUL._AC_UX679_t.png",
         "rating": {"rate": 4.7, "count": 500}
       },
     ];

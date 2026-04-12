@@ -229,7 +229,7 @@ class _HomeTabletState extends State<HomeTablet> {
                     height: context.hp(2),
                   ),
                   const OfferContainer(
-                      "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png"),
+                      "https://dummyjson.com/img/61IBBVJvSDL._AC_SY879_t.png"),
 
                   SizedBox(
                     height: context.hp(2),
@@ -239,7 +239,7 @@ class _HomeTabletState extends State<HomeTablet> {
                     subtitle: "Stand a chance to get rewarded",
                     buttonText: "Visit now",
                     image:
-                    "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+                    "https://dummyjson.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
                     buttonColor: const Color(0xffE34850),
                     onTap: () {
                       print("Clicked banner");
@@ -289,7 +289,7 @@ class _HomeTabletState extends State<HomeTablet> {
 
                   NewArrival(
                     imageUrl:
-                    "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
+                    "https://dummyjson.com/img/61IBBVJvSDL._AC_SY879_t.png",
                     title: "New Arrivals",
                     subtitle: "Summer’ 25 Collections",
                     onTap: () {
@@ -303,7 +303,7 @@ class _HomeTabletState extends State<HomeTablet> {
 
                   SponsoredCard(
                     imageUrl:
-                    "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+                    "https://dummyjson.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
                     title: "up to 50% Off",
                     onTap: () {
                       print("Clicked");

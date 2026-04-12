@@ -39,7 +39,11 @@ class _CartMobileState extends State<CartMobile> {
                   children: [
                     BlocBuilder<CartBloc, CartState>(
                         builder: (context, state) {
-                          print("cart item: ${state.products}");
+                          print("CART CONTEXT: $context");
+                          print("cart item: ${state.status}");
+                          if (state.status == CartStatus.loading) {
+                            return const Center(child: CircularProgressIndicator(color: Colors.black,));
+                          }
                           return  const ShoppingListSection();
                         }
                     ),

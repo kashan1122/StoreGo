@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
             CartRepoImpl(
               CartRemoteDataSource(),
             ),
-          )..add(InitEvent()),
+          )..add(GetCart(userId: 1)),
         ),
 
         /// 🟪 THEME BLOC (Requires LightTheme & DarkTheme)

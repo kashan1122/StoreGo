@@ -52,28 +52,49 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     });
 
-
     // on<GetCart>((event, emit) async {
     //   try {
-    //     final items = await repository.cartItems();
-    //     print("ITEMS: $items");
+    //     emit(state.copyWith(status: CartStatus.loading));
+    //
+    //     final result = await repository.cartItems(event.userId);
+    //     print("RRRRRR: $result");
     //     emit(state.copyWith(
-    //       // status: items.toString().isNull ? CartStatus.empty : CartStatus.success,
     //       status: CartStatus.success,
-    //       products: items,
-    //       id: 1,
-    //       errorMessage: ""
-    //     ),);
+    //       products: result,
+    //     ));
     //   } catch (e) {
+    //     print("CART STATE: $e");
     //     emit(state.copyWith(
-    //         status: CartStatus.error,
-    //         products: [],
-    //         id: 1,
-    //         errorMessage: "Proceed Error"
+    //       status: CartStatus.error,
+    //       errorMessage: e.toString(),
     //     ));
     //   }
-    //
     // });
+    on<GetCart>((event, emit) async {
+       int userId = event.userId;
+
+      try {
+        emit(state.copyWith(status: CartStatus.loading));
+        final items = await repository.cartItems(event.userId);
+        print("ITEMS: $items");
+        emit(state.copyWith(
+          // status: items.toString().isNull ? CartStatus.empty : CartStatus.success,
+          status: CartStatus.success,
+          products: items,
+          id: 1,
+          errorMessage: ""
+        ),);
+      } catch (e) {
+            print("CART STATE: $e");
+        emit(state.copyWith(
+            status: CartStatus.error,
+            products: [],
+            id: 1,
+            errorMessage: "Proceed Error"
+        ));
+      }
+
+    });
 
     on<RemoveFromCart>((event, emit) async {});
     on<UpdateQuantity>((event, emit) async {});

@@ -18,7 +18,7 @@ class ShoppingListSection extends StatelessWidget {
         /// Example items (later from CartBloc)
         CheckoutItemCard(
           title: 'Women’s Casual Wear',
-          imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          imageUrl: "https://dummyjson.com/img/81fPKd-2AYL._AC_SL1500_t.png",
           price: 34.00,
           oldPrice: 64.00,
           rating: 4.8,
