@@ -36,6 +36,18 @@ class AddToCart extends CartEvent {
   });
 }
 
+class GetCart extends CartEvent {
+  final int userId;
+  final ProductEntity product;
+  final int quantity;
+
+  GetCart({
+    required this.userId,
+    required this.product,
+    required this.quantity,
+  });
+}
+
 class RemoveFromCart extends CartEvent {
   final int userId;
   final int productId;

@@ -51,6 +51,30 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
 
     });
+
+
+    // on<GetCart>((event, emit) async {
+    //   try {
+    //     final items = await repository.cartItems();
+    //     print("ITEMS: $items");
+    //     emit(state.copyWith(
+    //       // status: items.toString().isNull ? CartStatus.empty : CartStatus.success,
+    //       status: CartStatus.success,
+    //       products: items,
+    //       id: 1,
+    //       errorMessage: ""
+    //     ),);
+    //   } catch (e) {
+    //     emit(state.copyWith(
+    //         status: CartStatus.error,
+    //         products: [],
+    //         id: 1,
+    //         errorMessage: "Proceed Error"
+    //     ));
+    //   }
+    //
+    // });
+
     on<RemoveFromCart>((event, emit) async {});
     on<UpdateQuantity>((event, emit) async {});
   }

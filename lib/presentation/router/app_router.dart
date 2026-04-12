@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/data/repositories/remote/cart_repo_impl.dart';
 import 'package:myapp/data/repositories/remote/search_repository_impl.dart';
-import 'package:myapp/data/source/add_to_cart.dart';
+import 'package:myapp/data/source/cart_remote_data.dart';
 import 'package:myapp/data/source/search_remote_data_source.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/screens/cart/cart_view.dart';
 import 'package:myapp/screens/home/home_view.dart';
+import 'package:myapp/screens/landing/landing_view.dart';
 import 'package:myapp/screens/product_detail/product_detail_view.dart';
 import 'package:myapp/screens/product_list/product_list_view.dart';
 import 'package:myapp/screens/search/search_view.dart';
@@ -19,8 +20,8 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: 'home',
-      builder: (context, state) => const HomeView(title: "Product Listing"),
+      name: 'landing',
+      builder: (context, state) => const LandingView(title: "Product Listing"),
     ),
     // GoRoute(
     //   path: '/product_list',

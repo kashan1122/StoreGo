@@ -1,4 +1,4 @@
-import 'package:myapp/data/source/product_api.dart';
+import 'package:myapp/data/source/product_remote_data.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/domain/repositories/product_repostory.dart';
 

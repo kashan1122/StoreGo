@@ -12,6 +12,7 @@
 // }
 import 'dart:convert';
 
+import 'package:myapp/core/constants/api_url.dart';
 import 'package:myapp/data/model/cart_model.dart';
 import 'package:myapp/domain/entities/cart_entity.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
@@ -22,9 +23,29 @@ class CartRemoteDataSource {
   final Map<int, List<CartEntity>> _carts = {}; // key = userId
 
   /// Fetch all items in the user's cart
-  Future<List<CartEntity>> getCart({int userId = 1}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    return _carts[userId] ?? [];
+  Future<List<ProductEntity>> getCart({int userId = 1}) async {
+    // await Future.delayed(const Duration(milliseconds: 500));
+    // try{
+      List<ProductEntity> returnNullObj = [];
+      final response = await http.get(
+        Uri.parse("$baseUrl/carts/user/1"),
+        headers: {"Content-Type": "application/json"},
+      );
+      // await Future.delayed(const Duration(milliseconds: 300));
+      print("object cart DataSource body: ${response.body}");
+      print("object cart DataSource status code: ${response.statusCode}");
+
+      if (response.statusCode == 200) {
+        var jsonDecoded = jsonDecode(response.body);
+        var singleCartItem = jsonDecoded;
+        print("object123: ${jsonDecoded['products']}");
+        // return singleCartItem;
+        return singleCartItem.map((e) => CartModel.fromJson(e));
+      }
+      return returnNullObj;
+    // }catch(e){
+    //   return e,\;
+    // }
   }
 
   /// Add a product to the cart
@@ -33,29 +54,29 @@ class CartRemoteDataSource {
       int userId, ProductEntity product, int quantity) async {
     try{
       print("object: $product");
-      print("DATA source quantity: $quantity");
+      print("DATA source quantity: $quantity, $userId");
       var request = {
-        "userId": userId,
-        "date": DateTime.now().toString(),
+        "userId": 1,
         "products": [
-          { "productId": product.id, "quantity": quantity},
+          { "id": product.id, "quantity": quantity},
         ]
       };
       final response = await http.post(
-        Uri.parse("https://fakestoreapi.com/carts"),
+        Uri.parse("$baseUrl/carts/add"),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(request),
       );
       // await Future.delayed(const Duration(milliseconds: 300));
-      print("object cart DataSource body: ${response.body}");
-      print("object cart DataSource status code: ${response.statusCode}");
+      print("object cart DataSource body addTOCart: ${response.body}");
+      print("object cart DataSource status code addTOCart: ${response.statusCode}");
 
 
       if(response.statusCode==201){
         var jsonDecoded = jsonDecode(response.body);
         var singleCartItem = jsonDecoded['products'];
         print("object123: ${jsonDecoded['products']}");
-        return singleCartItem.map((e) => CartModel.fromJson(e)).toList();
+        // return singleCartItem;
+        return singleCartItem.map((e) => CartModel.fromJson(e));
       }
       // final cart = _carts[userId] ?? [];
       //
@@ -77,7 +98,7 @@ class CartRemoteDataSource {
       // }
       //
       // _carts[userId] = cart;
-      }catch(e){
+    }catch(e){
       print("ERROR: $e");
       return e;
     }
