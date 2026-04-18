@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
+import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/screens/cart/widgets/checkout_item_card.dart';
 
 class ShoppingListSection extends StatelessWidget {
-  const ShoppingListSection({super.key});
+   ShoppingListSection({super.key, required this.products});
 
+  List products;
   @override
   Widget build(BuildContext context) {
     return const Column(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/core/constants/app_font.dart';
 import 'package:myapp/core/constants/app_strings.dart';
+import 'package:myapp/core/constants/constant_data.dart';
 import 'package:myapp/core/custom_widgets/image.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
@@ -196,20 +197,30 @@ class _ProductBottomSheetContentState extends State<ProductBottomSheetContent> {
                 context: context,
                 data: widget.product,
                 onPressCart: () {
-                  context.read<CartBloc>().add(
-                        AddToCart(
-                          userId: 1, // your user's id
-                          product: ProductEntity(
-                            id: widget.product.id,
-                            title: widget.product.title,
-                            price: widget.product.price,
-                            description: widget.product.description,
-                            category: widget.product.category,
-                            image: widget.product.image,
-                          ),
-                          quantity: quantity, // how many to add
-                        ),
-                      );
+                  final index = CartStorage.cartItems
+                      .indexWhere((item) => item.id == widget.product.id);
+
+                  if (index != -1) {
+                    // Already exists → do nothing OR update logic
+                    print("Product already in cart");
+                  } else {
+                    CartStorage.cartItems.add(widget.product);
+                    print("Product added");
+                  }
+                  // context.read<CartBloc>().add(
+                  //       AddToCart(
+                  //         userId: 1, // your user's id
+                  //         product: ProductEntity(
+                  //           id: widget.product.id,
+                  //           title: widget.product.title,
+                  //           price: widget.product.price,
+                  //           description: widget.product.description,
+                  //           category: widget.product.category,
+                  //           image: widget.product.image,
+                  //         ),
+                  //         quantity: quantity, // how many to add
+                  //       ),
+                  //     );
                 },
                 onPressBuy: () {
                   context.pop();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myapp/core/constants/constant_data.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
@@ -34,18 +35,29 @@ class _CartTabletState extends State<CartTablet> {
             // style: AppTextStyle.title,
           ),
           Expanded(
-            child:  SingleChildScrollView(
-              child: Column(
-                children: [
-                  BlocBuilder<CartBloc, CartState>(
-                      builder: (context, state) {
-                        print("cart item: ${state.products}");
-                        return  const ShoppingListSection();
-                      }
-                  ),
-                ],
-              ),
-            ),
+              child: ListView.builder(
+                itemCount: CartStorage.cartItems.length, // Number of items in your list
+                itemBuilder: (context, index) {
+                  return ShoppingListSection(products: CartStorage.cartItems,);
+                },
+              )
+            // child: SingleChildScrollView(
+            //   child: Column(
+            //     children: [
+            //       BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+            //         print("CART CONTEXT: $context");
+            //         print("cart item: ${state.status}");
+            //         if (state.status == CartStatus.loading) {
+            //           return const Center(
+            //               child: CircularProgressIndicator(
+            //             color: Colors.black,
+            //           ));
+            //         }
+            //         return const ShoppingListSection();
+            //       }),
+            //     ],
+            //   ),
+            // ),
           )
         ],
       ),

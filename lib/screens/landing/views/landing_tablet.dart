@@ -40,7 +40,7 @@ class _LandingTabletState extends State<LandingTablet> {
                   BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) {
                         print("cart item: ${state.products}");
-                        return  const ShoppingListSection();
+                        return   ShoppingListSection(products: [],);
                       }
                   ),
                 ],
