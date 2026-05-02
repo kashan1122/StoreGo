@@ -31,9 +31,6 @@ class _HomeMobileState extends State<HomeMobile> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-        appBar: AppBar(
-          title: Text(widget.title, style: TextStyle(color: Colors.black),),
-        ),
         body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
           if (state.status == Status.initial) {
             return SingleChildScrollView(

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomScaffold extends StatelessWidget {
-  final AppBar appBar;
+  final PreferredSizeWidget? appBar;
+  final Widget? bottomAppBar;
   final Widget body;
 
   const CustomScaffold({
     super.key,
-    required this.appBar,
+    this.appBar,
+    this.bottomAppBar,
     required this.body,
   });
   @override
@@ -14,9 +16,10 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
         child: body,
       ),
+      bottomNavigationBar: bottomAppBar,
     );
   }
 }

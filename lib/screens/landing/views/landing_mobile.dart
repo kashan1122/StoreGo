@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/core/constants/app_colors.dart';
+import 'package:myapp/core/custom_widgets/custom_appbar.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
@@ -20,7 +21,6 @@ class LandingMobile extends StatefulWidget {
 }
 
 class _LandingMobileState extends State<LandingMobile> {
-
   final List<NavItem> navItems = [
     NavItem(
       title: "Product List",
@@ -32,7 +32,7 @@ class _LandingMobileState extends State<LandingMobile> {
     ),
     NavItem(
       title: "Profile",
-      page: const Center(child: Text("PROFILE")),
+      page: const Center(child: Text("MENU")),
     ),
     NavItem(
       title: "Menu",
@@ -41,44 +41,63 @@ class _LandingMobileState extends State<LandingMobile> {
   ];
 
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: CustomText(navItems[_selectedIndex].title),
+    return CustomScaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(title: navItems[_selectedIndex].title,),
       ),
+      // AppBar(
+      //   title: CustomText(navItems[_selectedIndex].title),
+      // ),
       body: navItems[_selectedIndex].page,
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.only(right: 15.0, left: 15.0, bottom: 10.0),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-          child: Container(
+      bottomAppBar: BottomAppBar(
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.only(right: 15.0, left: 15.0, bottom: 10.0),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(50.0)),
             child: BottomNavigationBar(
               backgroundColor: AppColors.secondary,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   // icon: Image.asset(AssetPaths.homeIcon, scale: 5),
-                  icon: Icon(Icons.home, size: 20,),
+                  icon: Icon(
+                    Icons.home,
+                    size: 20,
+                  ),
                   label: 'home',
                   backgroundColor: AppColors.secondary,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.card_travel, size: 20,),
+                  icon: Icon(
+                    Icons.card_travel,
+                    size: 20,
+                  ),
                   label: 'Cart',
                   backgroundColor: AppColors.secondary,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.accessibility, size: 20,),
+                  icon: Icon(
+                    Icons.accessibility,
+                    size: 20,
+                  ),
                   label: 'Profile',
                   backgroundColor: AppColors.secondary,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.menu, size: 20,),
+                  icon: Icon(
+                    Icons.menu,
+                    size: 20,
+                  ),
                   label: 'Menu',
                   backgroundColor: AppColors.secondary,
                 ),
@@ -93,3 +112,5 @@ class _LandingMobileState extends State<LandingMobile> {
     );
   }
 }
+
+

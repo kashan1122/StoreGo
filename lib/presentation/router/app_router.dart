@@ -9,10 +9,10 @@ import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/screens/cart/cart_view.dart';
-import 'package:myapp/screens/home/home_view.dart';
+import 'package:myapp/screens/checkout/chekout_view.dart';
 import 'package:myapp/screens/landing/landing_view.dart';
+import 'package:myapp/screens/onboarding/onboarding_view.dart';
 import 'package:myapp/screens/product_detail/product_detail_view.dart';
-import 'package:myapp/screens/product_list/product_list_view.dart';
 import 'package:myapp/screens/search/search_view.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -20,6 +20,11 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
+      name: 'onboarding',
+      builder: (context, state) => const OnBoardingView(),
+    ),
+    GoRoute(
+      path: '/landing',
       name: 'landing',
       builder: (context, state) => const LandingView(title: "Product Listing"),
     ),
@@ -68,6 +73,20 @@ final GoRouter appRouter = GoRouter(
           ),
           child: const CartView(title: ""),
         );
+      },
+    ),
+    GoRoute(
+      path: '/checkout',
+      builder: (context, state) {
+        return const CheckoutView();
+        // return BlocProvider(
+        //   create: (_) => CartBloc(
+        //     CartRepoImpl(
+        //       CartRemoteDataSource(),
+        //     ),
+        //   ),
+        //   child: const CheckoutView(title: ""),
+        // );
       },
     ),
   ],

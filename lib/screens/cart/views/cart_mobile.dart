@@ -20,9 +20,6 @@ class _CartMobileState extends State<CartMobile> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: AppBar(
-        title: const CustomText("CART SCREEN"),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.start,
