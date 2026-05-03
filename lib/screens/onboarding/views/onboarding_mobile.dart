@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/core/constants/app_assets_path.dart';
 import 'package:myapp/screens/onboarding/onboarding_model.dart';
 
 class OnBoardingMobile extends StatefulWidget {
@@ -15,19 +16,19 @@ class _OnBoardingMobileState extends State<OnBoardingMobile> {
 
   final List<OnboardingModel> pages = [
     OnboardingModel(
-      image: "assets/images/onboardingone.png",
+      image: AppAssets.onBoardingOne,
       title: "Choose Products",
       description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
     ),
     OnboardingModel(
-      image: "assets/images/onboardingtwo.png",
+      image: AppAssets.onBoardingTwo,
       title: "Make Payment",
       description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
     ),
     OnboardingModel(
-      image: "assets/images/onboardingthree.png",
+      image: AppAssets.onBoardingThree,
       title: "Get Your Order",
       description:
       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
@@ -42,7 +43,7 @@ class _OnBoardingMobileState extends State<OnBoardingMobile> {
       );
     } else {
       // Navigate to Home/Login
-      context.push('/landing');
+      context.push('/login');
       print("Get Started Clicked");
     }
   }

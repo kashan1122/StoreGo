@@ -24,10 +24,17 @@ class AppString{
 
   static String off = "OFF";
   static String quantity = "Quantity";
-//   static String lastDate = "Last Date";
-//   static String sponsored = "Sponsored";
-//   static String standAChance = "Stand a chance";
+  static const chooseCamera = "Take Photo";
+  static const chooseGallery = "Choose from gallery";
+  static const createAnAccount = "Create An Account";
+  static const already = "I Already Have an Account";
+  static const welcomeBack = "Welcome\nBack!";
+  static const forgotPass = "Forgot\npassword?";
+  static const createAnAcc = "Create an\naccount";
 
-
-
+  static const login = "Login";
+  static const submit = "Submit";
+  static const createAccount = "Create Account";
+  static const signUp = "Sign up";
+  static const forgotPassword = "Forgot Password?";
 }

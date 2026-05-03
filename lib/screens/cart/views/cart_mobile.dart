@@ -37,23 +37,6 @@ class _CartMobileState extends State<CartMobile> {
                 return ShoppingListSection(products: CartStorage.cartItems,);
               },
             )
-            // child: SingleChildScrollView(
-            //   child: Column(
-            //     children: [
-            //       BlocBuilder<CartBloc, CartState>(builder: (context, state) {
-            //         print("CART CONTEXT: $context");
-            //         print("cart item: ${state.status}");
-            //         if (state.status == CartStatus.loading) {
-            //           return const Center(
-            //               child: CircularProgressIndicator(
-            //             color: Colors.black,
-            //           ));
-            //         }
-            //         return const ShoppingListSection();
-            //       }),
-            //     ],
-            //   ),
-            // ),
           )
         ],
       ),

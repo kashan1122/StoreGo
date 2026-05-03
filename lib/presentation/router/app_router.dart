@@ -8,6 +8,7 @@ import 'package:myapp/data/source/search_remote_data_source.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_bloc.dart';
+import 'package:myapp/screens/auth/login/login_view.dart';
 import 'package:myapp/screens/cart/cart_view.dart';
 import 'package:myapp/screens/checkout/chekout_view.dart';
 import 'package:myapp/screens/landing/landing_view.dart';
@@ -79,6 +80,20 @@ final GoRouter appRouter = GoRouter(
       path: '/checkout',
       builder: (context, state) {
         return const CheckoutView();
+        // return BlocProvider(
+        //   create: (_) => CartBloc(
+        //     CartRepoImpl(
+        //       CartRemoteDataSource(),
+        //     ),
+        //   ),
+        //   child: const CheckoutView(title: ""),
+        // );
+      },
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) {
+        return const LoginView();
         // return BlocProvider(
         //   create: (_) => CartBloc(
         //     CartRepoImpl(

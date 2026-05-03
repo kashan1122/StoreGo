@@ -32,7 +32,7 @@ class _LandingMobileState extends State<LandingMobile> {
     ),
     NavItem(
       title: "Profile",
-      page: const Center(child: Text("MENU")),
+      page: const Center(child: Text("PROFILE")),
     ),
     NavItem(
       title: "Menu",
