@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/core/constants/app_assets_path.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
 import 'package:myapp/presentation/blocs/product/product_state.dart';
 import 'package:myapp/screens/home/widgets/product_card.dart';
@@ -43,15 +46,7 @@ class ProductLisWidget extends StatelessWidget {
             onTap: (){
               context.push('/product_list', extra: state?.products);
             },
-            child: Container(
-              height: context.hp(4.9),
-              width: context.wp(10.7),
-              decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(50.0)
-              ),
-              child: const Center(child: Icon(Icons.arrow_forward_ios)),
-            ),
+            child: Image.asset(AppAssets.chevronRight, scale: 3,)
           ),
         )
       ],

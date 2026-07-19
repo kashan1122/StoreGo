@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/core/constants/app_assets_path.dart';
 import 'package:myapp/core/custom_widgets/image.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
 
@@ -23,10 +24,7 @@ class ProductImageSlider extends StatelessWidget {
         Positioned(
           right: 10,
           top: context.hp(15),
-          child: const CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.chevron_right),
-          ),
+          child: Image.asset(AppAssets.chevronRight, scale: 3,)
         ),
       ],
     );

@@ -11,6 +11,7 @@ class AppAssets {
   static const String galleryPicker = "$icons/gall.png";
 
   static const String google = "$images/google.png";
+  static const String chevronRight = "$images/chevron_right.png";
   static const String fb = "$images/fb.png";
 
 }

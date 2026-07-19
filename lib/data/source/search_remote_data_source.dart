@@ -9,7 +9,7 @@ class SearchRemoteDataSource {
         "price": 109.95,
         "description": "Perfect pack for everyday use",
         "category": "men's clothing",
-        "image": "https://dummyjson.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
         "rating": {"rate": 3.9, "count": 120}
       },
       {
