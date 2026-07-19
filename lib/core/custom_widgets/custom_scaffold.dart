@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 class CustomScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget? bottomAppBar;
+  final bool resizeToAvoidBottomInset;
   final Widget body;
 
   const CustomScaffold({
     super.key,
     this.appBar,
     this.bottomAppBar,
+    this.resizeToAvoidBottomInset = false,
     required this.body,
   });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: appBar,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),

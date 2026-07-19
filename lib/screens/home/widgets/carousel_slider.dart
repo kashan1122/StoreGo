@@ -23,7 +23,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
       "endColor": Color(0xFFFF9EB8),
       "title": "50-40% OFF",
       "subtitle": "Now in (product)\nAll colours",
-      "image": "https://dummyjson.com/img/61IBBVJvSDL._AC_SY879_t.png"
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"
     },
     {
       "startColor": Color(0xFFD1C4E9),

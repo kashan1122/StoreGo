@@ -14,6 +14,7 @@ import 'package:myapp/screens/checkout/chekout_view.dart';
 import 'package:myapp/screens/landing/landing_view.dart';
 import 'package:myapp/screens/onboarding/onboarding_view.dart';
 import 'package:myapp/screens/product_detail/product_detail_view.dart';
+import 'package:myapp/screens/product_list/product_list_view.dart';
 import 'package:myapp/screens/search/search_view.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -29,14 +30,14 @@ final GoRouter appRouter = GoRouter(
       name: 'landing',
       builder: (context, state) => const LandingView(title: "Product Listing"),
     ),
-    // GoRoute(
-    //   path: '/product_list',
-    //   name: 'productList',
-    //   builder: (context, state) {
-    //     final product = state.extra as List<ProductEntity>;
-    //     return ProductListView(data: product);
-    //   },
-    // ),
+    GoRoute(
+      path: '/product_list',
+      name: 'productList',
+      builder: (context, state) {
+        final product = state.extra as List<ProductEntity>;
+        return ProductListView(data: product);
+      },
+    ),
     GoRoute(
       path: '/product_detail',
       name: 'productDetail',
