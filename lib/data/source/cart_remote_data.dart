@@ -12,6 +12,7 @@
 // }
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:myapp/core/constants/api_url.dart';
 import 'package:myapp/data/model/cart_model.dart';
 import 'package:myapp/domain/entities/cart_entity.dart';
@@ -19,6 +20,10 @@ import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:http/http.dart' as http;
 
 class CartRemoteDataSource {
+  final Dio dio;
+
+  CartRemoteDataSource(this.dio);
+
   // Simulated in-memory cart storage
   final Map<int, List<CartEntity>> _carts = {}; // key = userId
 

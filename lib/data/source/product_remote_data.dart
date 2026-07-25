@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/core/constants/api_url.dart';
 import 'package:myapp/data/model/product_model.dart';
 
 class ProductRemoteDataSource {
-  final http.Client client;
+  // final http.Client client;
+  final Dio dio;
 
-  ProductRemoteDataSource(this.client);
+  ProductRemoteDataSource(this.dio);
 
   Future<List<ProductModel>> getProducts() async {
     final response = [
@@ -121,16 +123,31 @@ class ProductRemoteDataSource {
     return data.map((e) => ProductModel.fromJson(e)).toList();
   }
 
+  // Future<ProductModel> getProductById(int id) async {
+  //   final response = await client.get(
+  //     Uri.parse("https://example.com/products/$id"),
+  //     headers: {"Content-Type": "application/json"},
+  //   );
+  //   print("response from product list: ${response.body}");
+  //   if (response.statusCode == 200) {
+  //     return ProductModel.fromJson(jsonDecode(response.body));
+  //   } else {
+  //     throw Exception("Failed to load product details");
+  //   }
+  // }
+
   Future<ProductModel> getProductById(int id) async {
-    final response = await client.get(
-      Uri.parse("https://example.com/products/$id"),
-      headers: {"Content-Type": "application/json"},
-    );
-    print("response from product list: ${response.body}");
-    if (response.statusCode == 200) {
-      return ProductModel.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception("Failed to load product details");
+    try {
+      final response = await dio.get(
+        "$baseUrl/products/$id",
+      );
+      print("response from product list: ${response.data}");
+
+      final List<dynamic> data = response.data;
+
+      return ProductModel.fromJson(jsonDecode(response.data));
+    } on DioException catch (e) {
+      throw Exception(e.message);
     }
   }
 }
