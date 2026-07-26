@@ -123,34 +123,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        /// Product Bloc
-        BlocProvider<ProductBloc>(
-          create: (_) => sl<ProductBloc>()..add(LoadProducts()),
-        ),
 
-        /// Cart Bloc
-        BlocProvider<CartBloc>(
-          create: (_) => sl<CartBloc>()..add(
-            GetCart(userId: 1),
-          ),
-        ),
-
-        /// Theme Bloc
-        BlocProvider<ThemeBloc>(
-          create: (_) => sl<ThemeBloc>(),
-        ),
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, themeState) {
-          return MaterialApp.router(
-            title: 'Flutter Demo',
-            theme: themeState.themeData,
-            routerConfig: appRouter,
-          );
-        },
-      ),
+    return MaterialApp.router(
+      routerConfig: appRouter,
     );
+    // return MultiBlocProvider(
+    //   providers: [
+    //     /// Product Bloc
+    //     BlocProvider<ProductBloc>(
+    //       create: (_) => sl<ProductBloc>()..add(LoadProducts()),
+    //     ),
+    //
+    //     /// Cart Bloc
+    //     BlocProvider<CartBloc>(
+    //       create: (_) => sl<CartBloc>()..add(
+    //         GetCart(userId: 1),
+    //       ),
+    //     ),
+    //
+    //     /// Theme Bloc
+    //     BlocProvider<ThemeBloc>(
+    //       create: (_) => sl<ThemeBloc>(),
+    //     ),
+    //   ],
+    //   child: BlocBuilder<ThemeBloc, ThemeState>(
+    //     builder: (context, themeState) {
+    //       return MaterialApp.router(
+    //         title: 'Flutter Demo',
+    //         theme: themeState.themeData,
+    //         routerConfig: appRouter,
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

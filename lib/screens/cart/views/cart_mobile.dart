@@ -9,37 +9,44 @@ import 'package:myapp/core/responsive/size_extention.dart';
 import 'package:myapp/screens/cart/widgets/delivery_address.dart';
 import 'package:myapp/screens/cart/widgets/shopping_list.dart';
 
-class CartMobile extends StatefulWidget {
-  const CartMobile({super.key});
+import '../../../core/dependency_injection/di_container.dart';
 
-  @override
-  State<CartMobile> createState() => _CartMobileState();
-}
+class CartMobile extends StatelessWidget {
+  final CartBloc cartBloc;
+  const CartMobile({super.key, required this.cartBloc});
 
-class _CartMobileState extends State<CartMobile> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const DeliveryAddressSection(),
-          SizedBox(height: context.hp(3)),
-          const CustomText(
-            ' Shopping List',
-            // style: AppTextStyle.title,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: CartStorage.cartItems.length, // Number of items in your list
-              itemBuilder: (context, index) {
-                return ShoppingListSection(products: CartStorage.cartItems,);
-              },
-            )
-          )
-        ],
-      ),
+        body: BlocProvider.value(
+          value: cartBloc,
+          child: BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const DeliveryAddressSection(),
+                SizedBox(height: context.hp(3)),
+                const CustomText(
+                  ' Shopping List',
+                  // style: AppTextStyle.title,
+                ),
+                Expanded(
+                    child: ListView.builder(
+                      itemCount: CartStorage.cartItems.length,
+                      // Number of items in your list
+                      itemBuilder: (context, index) {
+                        return ShoppingListSection(
+                          products: CartStorage.cartItems,);
+                      },
+                    )
+                )
+              ],
+            );
+          }),
+        )
+
+
     );
   }
 }

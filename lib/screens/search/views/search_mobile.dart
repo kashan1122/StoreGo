@@ -4,14 +4,11 @@ import 'package:myapp/presentation/blocs/search/search_bloc.dart';
 import 'package:myapp/presentation/blocs/search/search_event.dart';
 import 'package:myapp/presentation/blocs/search/search_state.dart';
 
-class SearchMobile extends StatefulWidget {
-  const SearchMobile({super.key});
+class SearchMobile extends StatelessWidget {
+  final SearchBloc searchBloc;
 
-  @override
-  State<SearchMobile> createState() => _SearchMobileState();
-}
+  const SearchMobile({super.key, required this.searchBloc});
 
-class _SearchMobileState extends State<SearchMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,31 +30,34 @@ class _SearchMobileState extends State<SearchMobile> {
           ),
 
           Expanded(
-            child: BlocBuilder<SearchBloc, SearchState>(
-              builder: (context, state) {
-                if (state.status == SearchStatus.initial) {
-                  return const Center(child: Text("Start typing to search"));
-                }
+            child: BlocProvider.value(
+              value: searchBloc,
+              child: BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  if (state.status == SearchStatus.initial) {
+                    return const Center(child: Text("Start typing to search"));
+                  }
 
-                if (state.status == SearchStatus.empty) {
-                  return const Center(child: Text("No results found"));
-                }
+                  if (state.status == SearchStatus.empty) {
+                    return const Center(child: Text("No results found"));
+                  }
 
-                return ListView.builder(
-                  itemCount: state.products.length,
-                  itemBuilder: (context, index) {
-                    final product = state.products[index];
-                    return ListTile(
-                      leading: Image.network(product.image, width: 50),
-                      title: Text(product.title),
-                      subtitle: Text(product.title),
-                      onTap: () {
-                        // go to product detail
-                      },
-                    );
-                  },
-                );
-              },
+                  return ListView.builder(
+                    itemCount: state.products.length,
+                    itemBuilder: (context, index) {
+                      final product = state.products[index];
+                      return ListTile(
+                        leading: Image.network(product.image, width: 50),
+                        title: Text(product.title),
+                        subtitle: Text(product.title),
+                        onTap: () {
+                          // go to product detail
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],
