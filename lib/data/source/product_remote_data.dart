@@ -4,12 +4,22 @@ import 'package:http/http.dart' as http;
 import 'package:myapp/core/constants/api_url.dart';
 import 'package:myapp/data/model/product_model.dart';
 
-class ProductRemoteDataSource {
+
+
+abstract class ProductRemoteDataSource {
+  Future<List<ProductModel>> getProducts();
+  Future<ProductModel> getProductById(int id);
+}
+
+
+
+class ProductRemoteDataSourceImpl implements ProductRemoteDataSource{
   // final http.Client client;
   final Dio dio;
 
-  ProductRemoteDataSource(this.dio);
+  ProductRemoteDataSourceImpl(this.dio);
 
+  @override
   Future<List<ProductModel>> getProducts() async {
     final response = [
       {
@@ -136,6 +146,7 @@ class ProductRemoteDataSource {
   //   }
   // }
 
+  @override
   Future<ProductModel> getProductById(int id) async {
     try {
       final response = await dio.get(

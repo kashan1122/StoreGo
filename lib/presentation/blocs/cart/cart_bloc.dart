@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/data/repositories/remote/cart_repo_impl.dart';
+import 'package:myapp/domain/entities/cart_entity.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:myapp/domain/repositories/cart_repo.dart';
 import 'package:myapp/presentation/blocs/cart/cart_event.dart';
@@ -23,13 +24,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       // "category": copyEvent.category,
       // "image": copyEvent.image
       // };
-      ProductEntity addToCartProduct =  ProductEntity(
-        id: copyEvent.id,
-        title: copyEvent.title,
-        price: copyEvent.price,
-        description: copyEvent.description,
-        category: copyEvent.category,
-        image: copyEvent.image,
+      CartEntity addToCartProduct =  CartEntity(
+        productId: copyEvent.id,
+        quantity: 1,
+        // price: copyEvent.price,
+        // description: copyEvent.description,
+        // category: copyEvent.category,
+        // image: copyEvent.image,
       );
       try {
         final items = await repository.addToCart(1, addToCartProduct, copyEventQuan);

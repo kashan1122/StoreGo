@@ -25,18 +25,18 @@ class CartRepoImpl extends CartRepo {
   CartRepoImpl(this.cartRemoteDataSource);
 
   @override
-  Future<List<ProductEntity>> cartItems(int userId) async{
+  Future<List<CartEntity>> cartItems(int userId) async{
     var result = await cartRemoteDataSource.getCart(userId);
     return result;
   }
 
   @override
-  Future<ProductEntity> addToCart(int userId, ProductEntity product, int quantity) async {
+  Future<CartEntity> addToCart(int userId, CartEntity product, int quantity) async {
     // Call remote data source to add product
     print("ADD TO CART FROM REPO IMPL: $quantity");
     var result = await cartRemoteDataSource.addProductToCart(userId, product, quantity);
 
-     return result as ProductEntity;
+     return result as CartEntity;
   }
 
   @override

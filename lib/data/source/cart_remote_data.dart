@@ -19,20 +19,45 @@ import 'package:myapp/domain/entities/cart_entity.dart';
 import 'package:myapp/domain/entities/product_entity.dart';
 import 'package:http/http.dart' as http;
 
-class CartRemoteDataSource {
+
+import 'package:myapp/domain/entities/product_entity.dart';
+import 'package:myapp/data/model/cart_model.dart';
+
+abstract class CartRemoteDataSource {
+  Future<List<CartModel>> getCart(int userId);
+
+  Future<List<CartModel>> addProductToCart(
+      int userId,
+      CartEntity product,
+      int quantity,
+      );
+
+  Future<void> removeProductFromCart(
+      int userId,
+      int productId,
+      );
+
+  Future<void> updateProductQuantity(
+      int userId,
+      int productId,
+      int quantity,
+      );
+}
+
+class CartRemoteDataSourceImpl implements  CartRemoteDataSource{
   final Dio dio;
 
-  CartRemoteDataSource(this.dio);
+  CartRemoteDataSourceImpl(this.dio);
 
   // Simulated in-memory cart storage
   final Map<int, List<CartEntity>> _carts = {}; // key = userId
 
   /// Fetch all items in the user's cart
   // Future<List<ProductEntity>>
-  getCart(int userId) async {
+  @override
+  Future<List<CartModel>> getCart(int userId) async {
     // await Future.delayed(const Duration(milliseconds: 500));
     // try{
-      List<ProductEntity> returnNullObj = [];
       final response = await http.get(
         Uri.parse("$baseUrl/carts/user/$userId"),
         headers: {"Content-Type": "application/json"},
@@ -48,7 +73,7 @@ class CartRemoteDataSource {
         // return singleCartItem;
         return singleCartItem.map((e) => CartModel.fromJson(e));
       }
-      return returnNullObj;
+      return [];
     // }catch(e){
     //   return e,\;
     // }
@@ -56,15 +81,16 @@ class CartRemoteDataSource {
 
   /// Add a product to the cart
   // Future<void>
-  addProductToCart(
-      int userId, ProductEntity product, int quantity) async {
+  @override
+  Future<List<CartModel>> addProductToCart(
+      int userId, CartEntity product, int quantity) async {
     try{
       print("object: $product");
       print("DATA source quantity: $quantity, $userId");
       var request = {
         "userId": userId,
         "products": [
-          { "id": product.id, "quantity": quantity},
+          { "id": product.productId, "quantity": quantity},
         ]
       };
       final response = await http.post(
@@ -104,13 +130,15 @@ class CartRemoteDataSource {
       // }
       //
       // _carts[userId] = cart;
+    return [];
     }catch(e){
       print("ERROR: $e");
-      return e;
+      rethrow;
     }
   }
 
   /// Remove a product from the cart
+  @override
   Future<void> removeProductFromCart(int userId, int productId) async {
     await Future.delayed(const Duration(milliseconds: 300));
     final cart = _carts[userId] ?? [];
@@ -119,6 +147,7 @@ class CartRemoteDataSource {
   }
 
   /// Update quantity of a product in the cart
+  @override
   Future<void> updateProductQuantity(
       int userId, int productId, int quantity) async {
     await Future.delayed(const Duration(milliseconds: 300));

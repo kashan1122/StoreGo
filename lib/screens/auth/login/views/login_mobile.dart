@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/core/constants/app_assets_path.dart';
 import 'package:myapp/core/constants/app_strings.dart';
@@ -7,235 +8,262 @@ import 'package:myapp/core/custom_widgets/custom_button.dart';
 import 'package:myapp/core/custom_widgets/custom_field.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
+import 'package:myapp/presentation/blocs/auth/auth_bloc.dart';
+import 'package:myapp/presentation/blocs/auth/auth_state.dart';
 
-class LoginMobile extends StatefulWidget {
-  const LoginMobile({super.key});
+class LoginMobile extends StatelessWidget {
+  final LoginBloc loginBloc;
+  LoginMobile({super.key, required this.loginBloc});
 
-  @override
-  State<LoginMobile> createState() => _LoginMobileState();
-}
-
-class _LoginMobileState extends State<LoginMobile> {
   final _formKey = GlobalKey<FormState>();
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final conPasswordController = TextEditingController();
-  bool isSignUp = false;
-  bool isForgotPassword = false;
-
 
   @override
   Widget build(BuildContext context) {
-    emailController.text = "admin";
-    passwordController.text = "admin";
+    bool isSignUp = false;
+    bool isForgotPassword = false;
+    emailController.text = "admin@test.com";
+    passwordController.text = "123456";
     return CustomScaffold(
-        body: SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-             CustomText(
-              isSignUp?AppString.createAnAcc:
-              isForgotPassword?AppString.forgotPass:AppString.welcomeBack,
-              fontWeight: FontWeight.bold,
-              fontSize: 36,
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  CustomTextField(
-                    hint: "Email Address",
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Email is required";
-                      }
-                      // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                      //   return "Enter a valid email";
-                      // }
-                      return null;
-                    },
-                  ),
-                  isForgotPassword?const SizedBox.shrink():CustomTextField(
-                    hint: "Password",
-                    isPassword: true,
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password is required";
-                      }
-                      if (value.length < 6) {
-                        return "Minimum 6 characters required";
-                      }
-                      return null;
-                    },
-                  ),
-                  isSignUp
-                      ? CustomTextField(
-                          hint: "ConfirmPassword",
-                          isPassword: true,
-                          controller: conPasswordController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Password is required";
-                            }
-                            if (value.length < 6) {
-                              return "Minimum 6 characters required";
-                            }
-                            return null;
-                          },
-                        )
-                      : const SizedBox.shrink(),
-                ],
-              ),
-            ),
-            Align(
-              alignment:
-                  isSignUp ? Alignment.centerLeft : Alignment.centerRight,
-              child: isSignUp
-                  ? RichText(
-                      text: TextSpan(
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff676767),
-                        ),
-                        children: [
-                          const TextSpan(
-                            text: "\nBy clicking the ",
-                          ),
-                          TextSpan(
-                            text: "Register",
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Navigate or action
-                                print("Register clicked");
-                              },
-                          ),
-                          const TextSpan(
-                            text: " button, you agree\nto the public offer\n\n",
-                          ),
-                        ],
-                      ),
-                    )
-                  : TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isForgotPassword = true;
-                        });
-                      },
-                      child: const Text(
-                        AppString.forgotPassword,
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                            height: 0.1),
-                      ),
+        body:
+        BlocProvider.value(
+          value: loginBloc,
+          child: BlocConsumer<LoginBloc, LoginState>(
+              listener: (context, state) {
+                if (state is LoginSuccess) {
+                  context.go('/landing'); // or context.push('/landing')
+                }
+
+                if (state is LoginFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                      backgroundColor: Colors.red,
                     ),
-            ),
-            CustomButton(
-              text: isSignUp?
-              AppString.createAccount:
-              isForgotPassword?AppString.submit:AppString.login,
-              onTap: () {
-                if (_formKey.currentState!.validate() || (emailController.text=="admin" && passwordController.text=="admin")) {
-                  // Your save logic here
-                  context.push('/landing');
-                  print("Form Submitted");
+                  );
                 }
               },
-            ),
-            isForgotPassword?const SizedBox.shrink():Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                const Center(
-                  child: CustomText(
-                    "- OR Continue with -",
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              builder: (context, state) {
+            return SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    circularContainer(image: AppAssets.google),
-                    const SizedBox(
-                      width: 10,
+                    CustomText(
+                      isSignUp?AppString.createAnAcc:
+                      isForgotPassword?AppString.forgotPass:AppString.welcomeBack,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 36,
                     ),
-                    circularContainer(image: AppAssets.fb),
-                  ],
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Center(
-                    child: RichText(
-                      text: TextSpan(
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Form(
+                      key: _formKey,
+                      child: Column(
                         children: [
-                          TextSpan(
-                            text:
-                            isSignUp?
-                            AppString.already:
-                            AppString.createAnAccount,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                          CustomTextField(
+                            hint: "Email Address",
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Email is required";
+                              }
+                              // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                              //   return "Enter a valid email";
+                              // }
+                              return null;
+                            },
                           ),
-                          TextSpan(
-                            text:    isSignUp?
-                            " ${AppString.login}":" ${AppString.signUp}",
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Navigate or action
-                                if(isSignUp){
-                                  setState(() {
-                                    isSignUp = false;
-                                  });
-                                }
-                                else{
-                                  setState(() {
-                                    isSignUp = true;
-                                  });
-                                }
-
-                              },
-                            style: const TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: Color(0xffF83758),
-                            ),
+                          isForgotPassword?const SizedBox.shrink():CustomTextField(
+                            hint: "Password",
+                            isPassword: true,
+                            controller: passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Password is required";
+                              }
+                              if (value.length < 6) {
+                                return "Minimum 6 characters required";
+                              }
+                              return null;
+                            },
                           ),
+                          isSignUp
+                              ? CustomTextField(
+                            hint: "ConfirmPassword",
+                            isPassword: true,
+                            controller: conPasswordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Password is required";
+                              }
+                              if (value.length < 6) {
+                                return "Minimum 6 characters required";
+                              }
+                              return null;
+                            },
+                          )
+                              : const SizedBox.shrink(),
                         ],
                       ),
-                    )),
-              ],
-            )
-          ],
-        ),
-      ),
-    ));
+                    ),
+                    Align(
+                      alignment:
+                      isSignUp ? Alignment.centerLeft : Alignment.centerRight,
+                      child: isSignUp
+                          ? RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff676767),
+                          ),
+                          children: [
+                            const TextSpan(
+                              text: "\nBy clicking the ",
+                            ),
+                            TextSpan(
+                              text: "Register",
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  // Navigate or action
+                                  print("Register clicked");
+                                },
+                            ),
+                            const TextSpan(
+                              text: " button, you agree\nto the public offer\n\n",
+                            ),
+                          ],
+                        ),
+                      )
+                          : TextButton(
+                        onPressed: () {
+                          // setState(() {
+                          //   isForgotPassword = true;
+                          // });
+                        },
+                        child: const Text(
+                          AppString.forgotPassword,
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              height: 0.1),
+                        ),
+                      ),
+                    ),
+                    CustomButton(
+                      text: isSignUp?
+                      AppString.createAccount:
+                      isForgotPassword?AppString.submit:AppString.login,
+                      onTap: () {
+
+                        if (_formKey.currentState!.validate() || (emailController.text=="admin" && passwordController.text=="admin")) {
+                          // Your save logic here
+                          context.push('/landing');
+                          // loginBloc.add(
+                          //   LoginRequested(
+                          //     email: emailController.text,
+                          //     password: passwordController.text,
+                          //   ),
+                          // );
+                          print("Form Submitted");
+                        }
+                      },
+                    ),
+                    isForgotPassword?const SizedBox.shrink():Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        const Center(
+                          child: CustomText(
+                            "- OR Continue with -",
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            circularContainer(image: AppAssets.google),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            circularContainer(image: AppAssets.fb),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Center(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                    isSignUp?
+                                    AppString.already:
+                                    AppString.createAnAccount,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:    isSignUp?
+                                    " ${AppString.login}":" ${AppString.signUp}",
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // Navigate or action
+                                        if(isSignUp){
+                                          // setState(() {
+                                          //   isSignUp = false;
+                                          // });
+                                        }
+                                        else{
+                                          // setState(() {
+                                          //   isSignUp = true;
+                                          // });
+                                        }
+
+                                      },
+                                    style: const TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                      color: Color(0xffF83758),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          }),
+        )
+
+
+    );
   }
 
   Widget circularContainer({image}) {

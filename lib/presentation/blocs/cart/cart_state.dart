@@ -9,7 +9,7 @@ class CartState extends Equatable {
   final int id;
   final int quantity;
   final String errorMessage;
-  final List<ProductEntity> products;
+  final List<CartEntity> products;
 
   const CartState(
       {this.errorMessage = "",
@@ -36,7 +36,7 @@ class CartState extends Equatable {
   factory CartState.loading() => const CartState(
       errorMessage: "", status: CartStatus.loading, id: 0, quantity: 0);
 
-  factory CartState.success(int id, int quantity, ProductEntity product) => CartState(
+  factory CartState.success(int id, int quantity, CartEntity product) => CartState(
       errorMessage: "", status: CartStatus.success, id: id, quantity: quantity, products: [product]);
 
   factory CartState.error(String errorMsg) => CartState(
@@ -45,7 +45,7 @@ class CartState extends Equatable {
   CartState copyWith({
     CartStatus? status,
     int? id,
-    List<ProductEntity>? products,
+    List<CartEntity>? products,
     String? errorMessage,
   }) {
     return CartState(

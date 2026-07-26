@@ -8,10 +8,10 @@ import 'package:myapp/domain/entities/product_entity.dart';
 
 abstract class CartRepo {
   /// Fetch all items in the cart
-  Future<List<ProductEntity>> cartItems(int userId);
+  Future<List<CartEntity>> cartItems(int userId);
 
   /// Add a product to the cart
-  Future<ProductEntity> addToCart(int userId, ProductEntity product, int quantity);
+  Future<CartEntity> addToCart(int userId, CartEntity product, int quantity);
 
   /// Remove a product from the cart
   Future<void> removeFromCart(int userId, int productId);

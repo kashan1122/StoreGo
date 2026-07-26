@@ -1,6 +1,19 @@
+import 'package:dio/dio.dart';
+
 import '../model/search_model.dart';
 
-class SearchRemoteDataSource {
+abstract class SearchRemoteDataSource {
+  Future<List<SearchModel>> search(
+    String query,
+  );
+}
+
+
+class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
+  final Dio dio;
+
+  SearchRemoteDataSourceImpl(this.dio);
+  @override
   Future<List<SearchModel>> search(String query) async {
     final data = [
       {
@@ -37,4 +50,5 @@ class SearchRemoteDataSource {
         .map((e) => SearchModel.fromJson(e))
         .toList();
   }
+
 }
