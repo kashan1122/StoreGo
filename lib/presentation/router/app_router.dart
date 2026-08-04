@@ -150,7 +150,7 @@ final GoRouter appRouter = GoRouter(
       name: 'productList',
       builder: (context, state) {
         final product = state.extra as List<ProductEntity>;
-        return ProductListView(data: product);
+        return const ProductListView();
       },
     ),
     GoRoute(

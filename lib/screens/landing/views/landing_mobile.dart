@@ -4,6 +4,7 @@ import 'package:myapp/core/constants/app_colors.dart';
 import 'package:myapp/core/custom_widgets/custom_appbar.dart';
 import 'package:myapp/core/custom_widgets/custom_scaffold.dart';
 import 'package:myapp/core/custom_widgets/text.dart';
+import 'package:myapp/core/utils/custom_bottom_bar.dart';
 import 'package:myapp/presentation/blocs/cart/cart_bloc.dart';
 import 'package:myapp/presentation/blocs/cart/cart_state.dart';
 import 'package:myapp/core/responsive/size_extention.dart';
@@ -12,6 +13,7 @@ import 'package:myapp/screens/cart/widgets/delivery_address.dart';
 import 'package:myapp/screens/cart/widgets/shopping_list.dart';
 import 'package:myapp/screens/home/home_view.dart';
 import 'package:myapp/screens/landing/nav_model.dart';
+import 'package:myapp/screens/product_list/product_list_view.dart';
 
 class LandingMobile extends StatefulWidget {
   const LandingMobile({super.key});
@@ -28,7 +30,7 @@ class _LandingMobileState extends State<LandingMobile> {
     ),
     NavItem(
       title: "Cart List",
-      page: const CartView(title: "Cart List"),
+      page:  const ProductListView(),
     ),
     NavItem(
       title: "Profile",
@@ -47,6 +49,7 @@ class _LandingMobileState extends State<LandingMobile> {
       _selectedIndex = index;
     });
   }
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,56 +62,64 @@ class _LandingMobileState extends State<LandingMobile> {
       //   title: CustomText(navItems[_selectedIndex].title),
       // ),
       body: navItems[_selectedIndex].page,
-      bottomAppBar: BottomAppBar(
-        child: Container(
-          height: 70,
-          padding: const EdgeInsets.only(right: 15.0, left: 15.0, bottom: 10.0),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-            child: BottomNavigationBar(
-              backgroundColor: AppColors.secondary,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  // icon: Image.asset(AssetPaths.homeIcon, scale: 5),
-                  icon: Icon(
-                    Icons.home,
-                    size: 20,
-                  ),
-                  label: 'home',
-                  backgroundColor: AppColors.secondary,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.card_travel,
-                    size: 20,
-                  ),
-                  label: 'Cart',
-                  backgroundColor: AppColors.secondary,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.accessibility,
-                    size: 20,
-                  ),
-                  label: 'Profile',
-                  backgroundColor: AppColors.secondary,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.menu,
-                    size: 20,
-                  ),
-                  label: 'Menu',
-                  backgroundColor: AppColors.secondary,
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: AppColors.primary,
-              onTap: _onItemTapped,
-            ),
-          ),
-        ),
+      bottomAppBar: CustomBottomBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
       ),
+      // bottomAppBar: BottomAppBar(
+      //   child: Container(
+      //     height: 70,
+      //     padding: const EdgeInsets.only(right: 15.0, left: 15.0, bottom: 10.0),
+      //     child: ClipRRect(
+      //       borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+      //       child: BottomNavigationBar(
+      //         backgroundColor: AppColors.secondary,
+      //         items: const <BottomNavigationBarItem>[
+      //           BottomNavigationBarItem(
+      //             // icon: Image.asset(AssetPaths.homeIcon, scale: 5),
+      //             icon: Icon(
+      //               Icons.home,
+      //               size: 20,
+      //             ),
+      //             label: 'home',
+      //             backgroundColor: AppColors.secondary,
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(
+      //               Icons.card_travel,
+      //               size: 20,
+      //             ),
+      //             label: 'Cart',
+      //             backgroundColor: AppColors.secondary,
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(
+      //               Icons.accessibility,
+      //               size: 20,
+      //             ),
+      //             label: 'Profile',
+      //             backgroundColor: AppColors.secondary,
+      //           ),
+      //           BottomNavigationBarItem(
+      //             icon: Icon(
+      //               Icons.menu,
+      //               size: 20,
+      //             ),
+      //             label: 'Menu',
+      //             backgroundColor: AppColors.secondary,
+      //           ),
+      //         ],
+      //         currentIndex: _selectedIndex,
+      //         selectedItemColor: AppColors.primary,
+      //         onTap: _onItemTapped,
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
